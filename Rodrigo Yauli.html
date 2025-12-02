@@ -7516,7 +7516,30 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Primero vamos a importar todas las librerias a usar</p>
+<h1 id="Limpieza-y-Ordenamiento-de-datos-B%C3%A1sico">Limpieza y Ordenamiento de datos Básico<a class="anchor-link" href="#Limpieza-y-Ordenamiento-de-datos-B%C3%A1sico">¶</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>No te pasa que tienes un Excel en donde se registran tus datos en desorden además que no tienen el rango de horas que sueles trabajar?
+Este es un scipt sencillo para limpiar y ordenar tu base de datos en Excel con formato de fecha y hora, ordenarlo desde la operación o registro más temprana hasta la última operación donde marque el filtro o hasta donde desees, esto va a depender de la necesidad de la tarea que se valla a realizar.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Primero-vamos-a-importar-todas-las-librerias-a-usar">Primero vamos a importar todas las librerias a usar<a class="anchor-link" href="#Primero-vamos-a-importar-todas-las-librerias-a-usar">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7525,13 +7548,13 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [88]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [47]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">openpyxl</span> <span class="kn">import</span> <span class="n">Workbook</span>
 <span class="kn">from</span> <span class="nn">openpyxl.styles</span> <span class="kn">import</span> <span class="n">Font</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">time</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">openpyxl.styles</span> <span class="kn">import</span> <span class="n">Side</span><span class="p">,</span> <span class="n">Border</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -7547,7 +7570,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Segundo, vamos a importar la base de datos a usar</p>
+<h2 id="Segundo,-vamos-a-importar-la-base-de-datos-a-usar">Segundo, vamos a importar la base de datos a usar<a class="anchor-link" href="#Segundo,-vamos-a-importar-la-base-de-datos-a-usar">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7556,17 +7579,17 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [89]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [48]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Cargar archivo usando la hoja "Data"</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span>
-    <span class="s2">"/Users/rodrigoluisyauliblas/Downloads/Spot 2 May.xlsx"</span><span class="p">,</span> <span class="c1">#Cambiar la ubicación de origen del archivo que contenga la base de datos en Excel "/Users/rodrigoluisyauliblas/Downloads/Spot 2 May.xlsx"</span>
-    <span class="n">sheet_name</span><span class="o">=</span><span class="s2">"Data"</span> <span class="c1">#Si en caso la hoja que contenga los inputs tenga otro nombre, cambiar el nombre "Data" por la hoja que ocntenga los datos</span>
+    <span class="s2">"/Users/rodrigoluisyauliblas/Downloads/Spot 2 May.xlsx"</span><span class="p">,</span> <span class="c1">#Cambiar la ruta de tu archivo Excel</span>
+    <span class="n">sheet_name</span><span class="o">=</span><span class="s2">"Data"</span> <span class="c1">#Si en caso la hoja que contenga los datos tenga otro nombre, cambiar el nombre "Data" por la hoja que ocntenga los datos</span>
 <span class="p">)</span>
 
 <span class="c1"># Mostrar información del DataFrame</span>
-<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span> <span class="c1"># Esto con el fin de validar los tipos de datos que vamos a trabajar</span>
 </pre></div>
 </div>
 </div>
@@ -7602,7 +7625,7 @@ memory usage: 8.4+ KB
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Tercero, En la columna Hora no está especificado como Dtype de tiempo, por lo que se va a convertir a datatime para luego filtrar por lo solicitado, esto se hace ya que al intentar filtrar sin un paso previo de datetime este no se puede filtrar, ya con este paso el filtro funciona.</p>
+<h2 id="Tercero,-En-la-columna-Hora-no-est%C3%A1-especificado-como-Dtype-de-tiempo,-por-lo-que-se-va-a-convertir-a-datatime-para-luego-filtrar-por-lo-solicitado,-esto-se-hace-ya-que-al-intentar-filtrar-sin-un-paso-previo-de-datetime-este-no-se-puede-filtrar,-ya-con-este-paso-el-filtro-funciona.">Tercero, En la columna Hora no está especificado como Dtype de tiempo, por lo que se va a convertir a datatime para luego filtrar por lo solicitado, esto se hace ya que al intentar filtrar sin un paso previo de datetime este no se puede filtrar, ya con este paso el filtro funciona.<a class="anchor-link" href="#Tercero,-En-la-columna-Hora-no-est%C3%A1-especificado-como-Dtype-de-tiempo,-por-lo-que-se-va-a-convertir-a-datatime-para-luego-filtrar-por-lo-solicitado,-esto-se-hace-ya-que-al-intentar-filtrar-sin-un-paso-previo-de-datetime-este-no-se-puede-filtrar,-ya-con-este-paso-el-filtro-funciona.">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7611,7 +7634,7 @@ memory usage: 8.4+ KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [90]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [49]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># convertir a datetime y luego extraer solo la hora</span>
@@ -7631,7 +7654,7 @@ memory usage: 8.4+ KB
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>3.1 para corroborar que el filtro ha funcionado se va a comprobar el minimo y maximo de la base completa y del filtro usado</p>
+<h3 id="3.1-para-corroborar-que-el-filtro-ha-funcionado-se-va-a-comprobar-el-minimo-y-maximo-de-la-base-completa-y-del-filtro-usado">3.1 para corroborar que el filtro ha funcionado se va a comprobar el minimo y maximo de la base completa y del filtro usado<a class="anchor-link" href="#3.1-para-corroborar-que-el-filtro-ha-funcionado-se-va-a-comprobar-el-minimo-y-maximo-de-la-base-completa-y-del-filtro-usado">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7640,10 +7663,11 @@ memory usage: 8.4+ KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [91]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [50]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Hallar min/max de ambas base de datos</span>
+<span class="c1">## Esto se hace ya que tenemos datos numéricos, en caso tengas datos del tipo str no es necesario este paso</span>
 <span class="n">resumen</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s2">"Variable"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Hora"</span><span class="p">,</span> <span class="s2">"Precio"</span><span class="p">,</span> <span class="s2">"Monto"</span><span class="p">],</span>
     
@@ -7703,7 +7727,7 @@ Variable Min (df) Max (df) Min (en_hora) Max (en_hora)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Cuarto, vamos a ordenar la base de datos desde la operación más temprana hasta la operación más cercana al corte de tiempo</p>
+<h2 id="Cuarto,-vamos-a-ordenar-la-base-de-datos-desde-la-operaci%C3%B3n-m%C3%A1s-temprana-hasta-la-operaci%C3%B3n-m%C3%A1s-cercana-al-corte-de-tiempo">Cuarto, vamos a ordenar la base de datos desde la operación más temprana hasta la operación más cercana al corte de tiempo<a class="anchor-link" href="#Cuarto,-vamos-a-ordenar-la-base-de-datos-desde-la-operaci%C3%B3n-m%C3%A1s-temprana-hasta-la-operaci%C3%B3n-m%C3%A1s-cercana-al-corte-de-tiempo">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7712,11 +7736,11 @@ Variable Min (df) Max (df) Min (en_hora) Max (en_hora)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [92]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [51]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#Ordenamiento de la base de datos filtrada</span>
-<span class="n">en_hora</span> <span class="o">=</span> <span class="n">en_hora</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">"Hora"</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">en_hora</span> <span class="o">=</span> <span class="n">en_hora</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">"Hora"</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Esto ya que tenemos los registros de compras</span>
 
 <span class="c1">#Ver los primeros 10 registros de la base de datos</span>
 <span class="n">en_hora</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1">#En caso solo se desee ver la primera fila de datos cambiar el 10 por el 1</span>
@@ -7730,7 +7754,7 @@ Variable Min (df) Max (df) Min (en_hora) Max (en_hora)
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[92]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[51]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -7841,7 +7865,7 @@ Variable Min (df) Max (df) Min (en_hora) Max (en_hora)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Quinto, configuración del reporte de Excel a crear</p>
+<h2 id="Quinto,-configuraci%C3%B3n-del-reporte-de-Excel-a-crear">Quinto, configuración del reporte de Excel a crear<a class="anchor-link" href="#Quinto,-configuraci%C3%B3n-del-reporte-de-Excel-a-crear">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7850,7 +7874,7 @@ Variable Min (df) Max (df) Min (en_hora) Max (en_hora)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [93]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [52]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Configuración</span>
@@ -7859,7 +7883,7 @@ Variable Min (df) Max (df) Min (en_hora) Max (en_hora)
 <span class="n">DATA_PER_BLOCK</span> <span class="o">=</span> <span class="n">MAX_ROWS</span> <span class="o">-</span> <span class="n">HEADER_ROWS</span>  <span class="c1"># 63 registros por bloque</span>
 
 <span class="c1"># Creación del arhcivo Excel</span>
-<span class="n">sheet_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">sheet_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"</span><span class="si">%d</span><span class="s2">-%m-%Y"</span><span class="p">)</span>
 <span class="n">wb</span> <span class="o">=</span> <span class="n">Workbook</span><span class="p">()</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">active</span>
 
@@ -7877,7 +7901,7 @@ Variable Min (df) Max (df) Min (en_hora) Max (en_hora)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Sexto, configuración de la hoja "Reporte" para el ordenamiento de datos así como el cuadro resumen</p>
+<h2 id="Sexto,-configuraci%C3%B3n-de-la-hoja-%22Reporte%22-para-el-ordenamiento-de-datos-as%C3%AD-como-el-cuadro-resumen">Sexto, configuración de la hoja "Reporte" para el ordenamiento de datos así como el cuadro resumen<a class="anchor-link" href="#Sexto,-configuraci%C3%B3n-de-la-hoja-%22Reporte%22-para-el-ordenamiento-de-datos-as%C3%AD-como-el-cuadro-resumen">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7886,7 +7910,7 @@ Variable Min (df) Max (df) Min (en_hora) Max (en_hora)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [94]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [53]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Título</span>
@@ -7955,7 +7979,7 @@ Variable Min (df) Max (df) Min (en_hora) Max (en_hora)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>6.1 Calculo de la volatilidad</p>
+<h3 id="6.1-Calculo-de-la-volatilidad">6.1 Calculo de la volatilidad<a class="anchor-link" href="#6.1-Calculo-de-la-volatilidad">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7964,7 +7988,7 @@ Variable Min (df) Max (df) Min (en_hora) Max (en_hora)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [95]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [54]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># volatilidad simple = desviación estándar de precios</span>
@@ -7998,7 +8022,7 @@ Volatilidad redondeada a 4 decimales: 0.0015
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>6.2 Resumen</p>
+<h3 id="6.2-Resumen">6.2 Resumen<a class="anchor-link" href="#6.2-Resumen">¶</a></h3>
 </div>
 </div>
 </div>
@@ -8007,7 +8031,7 @@ Volatilidad redondeada a 4 decimales: 0.0015
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [96]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [55]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Resumen</span>
@@ -8075,7 +8099,7 @@ Volatilidad redondeada a 4 decimales: 0.0015
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Séptimo, guardar y exportar el "Reporte"</p>
+<h2 id="S%C3%A9ptimo,-guardar-y-exportar-el-%22Reporte%22">Séptimo, guardar y exportar el "Reporte"<a class="anchor-link" href="#S%C3%A9ptimo,-guardar-y-exportar-el-%22Reporte%22">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8084,12 +8108,12 @@ Volatilidad redondeada a 4 decimales: 0.0015
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [97]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [56]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Guardar</span>
-<span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">"Rodrigo Yauli.xlsx"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Rodrigo Yauli.xlsx se generó correctamente."</span><span class="p">)</span>
+<span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">"Tu nombre del archivo.xlsx"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Se generó correctamente."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8102,7 +8126,35 @@ Volatilidad redondeada a 4 decimales: 0.0015
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Rodrigo Yauli.xlsx se generó correctamente.
+<pre>Se generó correctamente.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [57]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">!</span>jupyter<span class="w"> </span>nbconvert<span class="w"> </span>--to<span class="w"> </span>html<span class="w"> </span><span class="s2">"Rodrigo Yauli.ipynb"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[NbConvertApp] Converting notebook Rodrigo Yauli.ipynb to html
+[NbConvertApp] Writing 314828 bytes to Rodrigo Yauli.html
 </pre>
 </div>
 </div>
